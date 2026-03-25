@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facundo Pujol | Sistemas & Web Dev</title>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
 
@@ -23,7 +26,7 @@
 
     <main>
         <section id="hero">
-            <h1>Facundo Pujol</h1>
+            <h1 class="typing">Facundo Pujol</h1>
             <p class="subtitle">Estudiante de Lic. en Sistemas (UNNE) & Full-Stack Developer</p>
             
             <div class="badges">
@@ -34,7 +37,7 @@
             </div>
         </section>
 
-        <section id="projects">
+        <section id="projects" data-aos="fade-up">
             <h2 class="section-title">Proyectos Destacados</h2>
             
             <div class="project-card">
@@ -43,12 +46,12 @@
                     <p>Plataforma de E-commerce y catálogo dinámico desarrollada con React y Google Firebase. Incluye gestión de carrito en tiempo real y autenticación segura.</p>
                     <div class="project-links">
                         <a href="https://github.com/facundoemilianopujol02-maker/CleanSolutions" target="_blank" class="btn">Ver Código</a>
-                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="skills">
+        <section id="skills" data-aos="fade-up">
             <h2 class="section-title">Technical Stack</h2>
             <div class="skills-container">
                 <div class="skill-category">
@@ -66,7 +69,7 @@
             </div>
         </section>
 
-        <section id="contact">
+        <section id="contact" data-aos="fade-up">
             <h2 class="section-title">Hablemos</h2>
             <div class="contact-card">
                 <p>¿Tenés un proyecto en mente o buscás un desarrollador para tu equipo?</p>
@@ -83,11 +86,18 @@
         <div class="footer-content">
             <p>© 2026 Facundo Pujol | Corrientes, Argentina</p>
             <div class="social-links">
-                <a href="https://github.com/tu-usuario" target="_blank">GitHub</a>
-                <a href="https://linkedin.com/in/tu-usuario" target="_blank">LinkedIn</a>
+                <a href="https://github.com/facundoemilianopujol02-maker" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/facundo-pujol-70216b214/" target="_blank">LinkedIn</a>
             </div>
         </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 1000,
+        once: true
+      });
+    </script>
 </body>
 </html>
