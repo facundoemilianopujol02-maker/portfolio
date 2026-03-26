@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facundo Pujol | Sistemas & Web Dev</title>
     
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="favicon.png?v=1.1">
 </head>
 <body>
@@ -27,24 +26,24 @@
 
     <main>
         <section id="hero">
-            <h1 class="typing">Facundo Pujol</h1>
-            <p class="subtitle">Estudiante de Lic. en Sistemas (UNNE) & Full-Stack Developer</p>
-            
-            <div class="badges">
-                <span>React</span>
-                <span>Firebase</span>
-                <span>JavaScript</span>
-                <span>Node.js</span>
+            <div class="hero-content">
+                <h1 class="typing">Facundo Pujol</h1>
+                <p class="subtitle">Estudiante de Lic. en Sistemas (UNNE) & Full-Stack Developer</p>
+                <div class="badges">
+                    <span>React</span>
+                    <span>Firebase</span>
+                    <span>JavaScript</span>
+                    <span>Node.js</span>
+                </div>
             </div>
         </section>
 
-        <section id="projects" data-aos="fade-up">
+        <section id="projects">
             <h2 class="section-title">Proyectos Destacados</h2>
-            
             <div class="project-card">
                 <div class="project-content">
                     <h3>Clean Solutions</h3>
-                    <p>Plataforma de E-commerce y catálogo dinámico desarrollada con React y Google Firebase. Incluye gestión de carrito en tiempo real y autenticación segura.</p>
+                    <p>Plataforma de E-commerce y catálogo dinámico con React y Firebase. Gestión de stock y carrito en tiempo real.</p>
                     <div class="project-links">
                         <a href="https://github.com/facundoemilianopujol02-maker/CleanSolutions" target="_blank" class="btn">Ver Código</a>
                     </div>
@@ -52,49 +51,34 @@
             </div>
         </section>
 
-        <section id="services" data-aos="fade-up">
-            <h2 class="section-title">Contratación Profesional</h2>
+        <section id="services">
+            <h2 class="section-title">Servicios Profesionales</h2>
             <div class="services-container">
-                
                 <div class="service-card">
                     <div class="service-icon">🛍️</div>
                     <h3>E-commerce Full-Stack</h3>
-                    <p>Desarrollo de tiendas online profesionales con React y Firebase. Escalables y autogestionables.</p>
-                    <a href="https://www.fiverr.com/s/Egz6q8Y" target="_blank" class="btn-fiverr">Ver en Fiverr</a>
+                    <p>Tiendas online profesionales, rápidas y autogestionables.</p>
+                    <a href="https://www.fiverr.com/s/KeQjvAz" target="_blank" class="btn-fiverr">Ver en Fiverr</a>
                 </div>
-
                 <div class="service-card premium">
                     <div class="service-icon">🛠️</div>
                     <h3>Engineering & Debugging</h3>
-                    <p>Auditoría técnica y resolución de errores críticos. Optimización de performance y seguridad.</p>
-                    <a href="https://www.fiverr.com/s/e62j0GY" target="_blank" class="btn-fiverr">Ver en Fiverr</a>
+                    <p>Resolución de errores críticos y auditoría de sistemas.</p>
+                    <a href="https://www.fiverr.com/s/8zqDV4q" target="_blank" class="btn-fiverr">Ver en Fiverr</a>
                 </div>
-
             </div>
         </section>
 
-        <section id="skills" data-aos="fade-up">
+        <section id="skills">
             <h2 class="section-title">Technical Stack</h2>
-            <div class="skills-container">
-                <div class="skill-category">
+            <div class="skills-grid">
+                <div class="skill-item">
                     <h4>Frontend</h4>
-                    <p>React.js, JavaScript (ES6+), HTML5/CSS3, WordPress Customization</p>
+                    <p>React.js, JS (ES6+), HTML5/CSS3</p>
                 </div>
-                <div class="skill-category">
-                    <h4>Backend & Data</h4>
-                    <p>Firebase Auth/Firestore, Node.js Basics, Git & GitHub</p>
+                <div class="skill-item">
+                    <h4>Backend</h4>
+                    <p>Firebase, Node.js, Git</p>
                 </div>
-                <div class="skill-category">
+                <div class="skill-item">
                     <h4>Sistemas (UNNE)</h4>
-                    <p>C++, Python, Álgebra Lineal, Lógica de Programación</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" data-aos="fade-up">
-            <h2 class="section-title">Hablemos</h2>
-            <div class="contact-card">
-                <p>¿Tenés un proyecto en mente o buscás un desarrollador para tu equipo?</p>
-                <form id="my-form" action="https://formspree.io/f/mgopeknz" method="POST" class="contact-form">
-                    <input type="email" name="email" placeholder="Tu correo electrónico" required>
-                    <textarea name="message" rows="4" placeholder="¿En qué puedo ayudarte?" required></textarea>

@@ -1,15 +1,4 @@
-/* --- 1. Variables Globales --- */
-:root {
-    --bg: #0a0a0a;
-    --card-bg: #161616;
-    --accent: #1dbf73; /* Verde Fiverr */
-    --text: #ffffff;
-    --text-dim: #a0a0a0;
-    --border: #2a2a2a;
-    --nav-bg: rgba(10, 10, 10, 0.8);
-}
-
-/* --- 2. Reset y Base --- */
+/* --- RESET --- */
 * {
     margin: 0;
     padding: 0;
@@ -17,216 +6,103 @@
     scroll-behavior: smooth;
 }
 
+:root {
+    --bg: #0a0a0a;
+    --card: #161616;
+    --accent: #1dbf73;
+    --text: #ffffff;
+    --border: #2a2a2a;
+}
+
 body {
     background-color: var(--bg);
     color: var(--text);
     font-family: 'Inter', sans-serif;
-    line-height: 1.6;
+    overflow-y: auto; /* Asegura el scroll */
 }
 
-/* --- 3. Navegación --- */
+/* --- NAV --- */
 nav {
     position: fixed;
-    top: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    top: 0; width: 100%;
+    display: flex; justify-content: space-between;
     padding: 20px 5%;
-    background: var(--nav-bg);
+    background: rgba(10,10,10,0.9);
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-bottom: 1px solid var(--border);
 }
 
-.logo {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--accent);
-}
+nav ul { display: flex; list-style: none; gap: 20px; }
+nav a { text-decoration: none; color: white; font-weight: 600; font-size: 0.9rem; }
 
-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-}
-
-nav a {
-    text-decoration: none;
-    color: var(--text);
-    font-size: 0.9rem;
-    font-weight: 600;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    color: var(--accent);
-}
-
-/* --- 4. Secciones Generales --- */
+/* --- SECCIONES --- */
 section {
-    padding: 100px 10%; /* Espaciado para que no se peguen */
-    min-height: 60vh;
+    padding: 100px 10%;
+    min-height: auto; /* IMPORTANTE: deja que el contenido defina el alto */
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
-.section-title {
-    font-size: 2.5rem;
-    margin-bottom: 50px;
-    text-align: center;
-    letter-spacing: -1px;
-}
+#hero { height: 100vh; justify-content: center; }
 
-/* --- 5. Hero (Inicio) --- */
-#hero {
-    height: 100vh;
-    text-align: center;
-}
+.section-title { font-size: 2.5rem; margin-bottom: 40px; }
 
-h1.typing {
-    font-size: clamp(3rem, 10vw, 5rem);
-    font-weight: 800;
-    margin-bottom: 10px;
-    letter-spacing: -2px;
-}
-
-.subtitle {
-    font-size: 1.2rem;
-    color: var(--text-dim);
-    margin-bottom: 30px;
-}
-
-.badges {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.badges span {
-    background: var(--border);
-    padding: 5px 15px;
+/* --- CARDS --- */
+.project-card, .service-card, .skill-item, .contact-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 30px;
     border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-/* --- 6. Proyectos y Servicios (Tarjetas) --- */
-.project-card, .services-container {
     width: 100%;
-    max-width: 900px;
+    max-width: 800px;
+    margin-bottom: 20px;
 }
 
 .services-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-.project-card, .service-card, .contact-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    padding: 40px;
-    border-radius: 20px;
-    transition: 0.3s;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
     width: 100%;
+    max-width: 800px;
 }
 
-.service-card:hover, .project-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--accent);
-}
+.service-card.premium { border-color: var(--accent); }
 
-.service-card.premium {
-    border: 1px solid var(--accent);
-    box-shadow: 0 0 20px rgba(29, 191, 115, 0.1);
-}
-
-/* --- 7. Botones --- */
+/* --- BOTONES --- */
 .btn, .btn-fiverr {
     display: inline-block;
-    padding: 12px 25px;
+    padding: 12px 24px;
     border-radius: 8px;
     text-decoration: none;
     font-weight: 700;
     transition: 0.3s;
-    cursor: pointer;
-    border: none;
-}
-
-.btn {
-    background: var(--text);
-    color: var(--bg);
-}
-
-.btn-fiverr {
-    background: var(--accent);
-    color: #000;
-    margin-top: 20px;
-}
-
-.btn:hover, .btn-fiverr:hover {
-    transform: scale(1.05);
-    opacity: 0.9;
-}
-
-/* --- 8. Skills --- */
-.skills-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    width: 100%;
-    max-width: 1000px;
-}
-
-.skill-category {
-    background: var(--card-bg);
-    padding: 25px;
-    border-radius: 15px;
-    border: 1px solid var(--border);
-}
-
-.skill-category h4 {
-    color: var(--accent);
-    margin-bottom: 10px;
-}
-
-/* --- 9. Formulario --- */
-.contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    width: 100%;
-}
-
-input, textarea {
-    background: #222;
-    border: 1px solid var(--border);
-    padding: 15px;
-    border-radius: 8px;
-    color: white;
-    width: 100%;
-}
-
-/* --- 10. Footer --- */
-footer {
-    padding: 50px;
     text-align: center;
-    border-top: 1px solid var(--border);
 }
 
-.social-links {
-    margin-top: 15px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+.btn { background: white; color: black; }
+.btn-fiverr { background: var(--accent); color: black; margin-top: 15px; }
+
+/* --- SKILLS --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px; width: 100%; max-width: 800px;
 }
 
-/* --- Responsividad --- */
+/* --- FORM --- */
+.contact-form input, .contact-form textarea {
+    width: 100%; padding: 15px; margin-bottom: 10px;
+    background: #222; border: 1px solid var(--border);
+    color: white; border-radius: 8px;
+}
+
+footer { padding: 40px; text-align: center; border-top: 1px solid var(--border); }
+.social-links { margin-top: 10px; display: flex; justify-content: center; gap: 20px; }
+
 @media (max-width: 768px) {
-    nav ul { display: none; } /* Podés armar un menú hamburguesa luego */
+    nav ul { display: none; }
     section { padding: 80px 5%; }
 }
