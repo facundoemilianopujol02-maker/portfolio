@@ -82,3 +82,62 @@
                 </div>
                 <div class="skill-item">
                     <h4>Sistemas (UNNE)</h4>
+                    <p>C++, Python, Lógica & Álgebra</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Hablemos</h2>
+            <div class="contact-card">
+                <form id="my-form" action="https://formspree.io/f/mgopeknz" method="POST" class="contact-form">
+                    <input type="email" name="email" placeholder="Tu email" required>
+                    <textarea name="message" rows="5" placeholder="¿En qué puedo ayudarte?" required></textarea>
+                    <button id="status-button" type="submit" class="btn">Enviar Mensaje</button>
+                    <p id="status-text"></p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Facundo Pujol | Corrientes, Argentina</p>
+        <div class="social-links">
+            <a href="https://github.com/facundoemilianopujol02-maker" target="_blank">GitHub</a>
+            <a href="https://www.linkedin.com/in/facundo-pujol-70216b214/" target="_blank">LinkedIn</a>
+        </div>
+    </footer>
+
+    <script>
+        var form = document.getElementById("my-form");
+        async function handleSubmit(event) {
+            event.preventDefault();
+            var status = document.getElementById("status-text");
+            var button = document.getElementById("status-button");
+            var data = new FormData(event.target);
+            button.disabled = true;
+            status.innerHTML = "Enviando...";
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            }).then(response => {
+                if (response.ok) {
+                    status.innerHTML = "¡Mensaje enviado con éxito!";
+                    status.style.color = "#1dbf73";
+                    form.reset();
+                    button.disabled = false;
+                } else {
+                    status.innerHTML = "Error al enviar.";
+                    status.style.color = "#ef4444";
+                    button.disabled = false;
+                }
+            }).catch(error => {
+                status.innerHTML = "Error de conexión.";
+                button.disabled = false;
+            });
+        }
+        form.addEventListener("submit", handleSubmit);
+    </script>
+</body>
+</html>
