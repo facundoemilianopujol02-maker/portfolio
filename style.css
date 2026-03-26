@@ -1,218 +1,232 @@
-/* 1. Variables de Diseño (Sistema de Diseño) */
+/* --- 1. Variables Globales --- */
 :root {
-    --bg: #030712;           /* Negro profundo */
-    --card-bg: #111827;     /* Gris azulado oscuro */
-    --accent: #3b82f6;       /* Azul eléctrico moderno */
-    --accent-glow: rgba(59, 130, 246, 0.1);
-    --text-primary: #f9fafb;
-    --text-secondary: #9ca3af;
-    --border: #1f2937;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --bg: #0a0a0a;
+    --card-bg: #161616;
+    --accent: #1dbf73; /* Verde Fiverr */
+    --text: #ffffff;
+    --text-dim: #a0a0a0;
+    --border: #2a2a2a;
+    --nav-bg: rgba(10, 10, 10, 0.8);
 }
 
-/* 2. Reset y Estilos Globales */
+/* --- 2. Reset y Base --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-html {
     scroll-behavior: smooth;
 }
 
 body {
     background-color: var(--bg);
-    color: var(--text-primary);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
     line-height: 1.6;
 }
 
-/* 3. Navegación */
-header {
+/* --- 3. Navegación --- */
+nav {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(3, 7, 18, 0.8);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    z-index: 1000;
-}
-
-nav {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 20px 5%;
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--border);
 }
 
 .logo {
-    font-weight: 800;
     font-size: 1.5rem;
+    font-weight: 800;
     color: var(--accent);
-    letter-spacing: -1px;
 }
 
 nav ul {
     display: flex;
-    gap: 2.5rem;
     list-style: none;
+    gap: 20px;
 }
 
 nav a {
-    color: var(--text-secondary);
     text-decoration: none;
+    color: var(--text);
     font-size: 0.9rem;
-    font-weight: 500;
-    transition: var(--transition);
+    font-weight: 600;
+    transition: 0.3s;
 }
 
 nav a:hover {
     color: var(--accent);
 }
 
-/* 4. Sección Hero (Impacto Visual) */
-#hero {
-    height: 100vh;
+/* --- 4. Secciones Generales --- */
+section {
+    padding: 100px 10%; /* Espaciado para que no se peguen */
+    min-height: 60vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    background: radial-gradient(circle at center, var(--accent-glow), transparent 60%);
-    padding: 0 1rem;
 }
 
-h1 {
-    font-size: clamp(2.5rem, 8vw, 4.5rem);
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    text-align: center;
+    letter-spacing: -1px;
+}
+
+/* --- 5. Hero (Inicio) --- */
+#hero {
+    height: 100vh;
+    text-align: center;
+}
+
+h1.typing {
+    font-size: clamp(3rem, 10vw, 5rem);
     font-weight: 800;
+    margin-bottom: 10px;
     letter-spacing: -2px;
-    margin-bottom: 1rem;
-    background: linear-gradient(to right, #fff, #94a3b8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
-    font-size: clamp(1rem, 4vw, 1.25rem);
-    color: var(--text-secondary);
-    max-width: 600px;
-    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    color: var(--text-dim);
+    margin-bottom: 30px;
 }
 
 .badges {
     display: flex;
-    gap: 0.75rem;
+    gap: 10px;
     flex-wrap: wrap;
     justify-content: center;
 }
 
 .badges span {
     background: var(--border);
-    border: 1px solid #374151;
-    padding: 0.4rem 1rem;
-    border-radius: 99px;
-    font-size: 0.75rem;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
     font-weight: 600;
-    color: var(--accent);
 }
 
-/* 5. Tarjetas de Proyectos */
-#projects, #skills, #contact {
+/* --- 6. Proyectos y Servicios (Tarjetas) --- */
+.project-card, .services-container {
+    width: 100%;
     max-width: 900px;
-    margin: 100px auto;
-    padding: 0 2rem;
 }
 
-.section-title {
-    font-size: 2rem;
-    margin-bottom: 3rem;
-    text-align: center;
+.services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
 }
 
-.project-card {
+.project-card, .service-card, .contact-card {
     background: var(--card-bg);
     border: 1px solid var(--border);
+    padding: 40px;
     border-radius: 20px;
-    padding: 3rem;
-    transition: var(--transition);
+    transition: 0.3s;
+    width: 100%;
 }
 
-.project-card:hover {
+.service-card:hover, .project-card:hover {
+    transform: translateY(-10px);
     border-color: var(--accent);
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
 
-/* 6. Skills Grid */
+.service-card.premium {
+    border: 1px solid var(--accent);
+    box-shadow: 0 0 20px rgba(29, 191, 115, 0.1);
+}
+
+/* --- 7. Botones --- */
+.btn, .btn-fiverr {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: 0.3s;
+    cursor: pointer;
+    border: none;
+}
+
+.btn {
+    background: var(--text);
+    color: var(--bg);
+}
+
+.btn-fiverr {
+    background: var(--accent);
+    color: #000;
+    margin-top: 20px;
+}
+
+.btn:hover, .btn-fiverr:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+/* --- 8. Skills --- */
 .skills-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
 }
 
 .skill-category {
     background: var(--card-bg);
+    padding: 25px;
+    border-radius: 15px;
     border: 1px solid var(--border);
-    padding: 2rem;
-    border-radius: 16px;
 }
 
 .skill-category h4 {
     color: var(--accent);
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
 }
 
-/* 7. Botones y Formularios */
-.btn {
-    display: inline-block;
-    background: var(--accent);
-    color: white;
-    padding: 0.8rem 1.8rem;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: var(--transition);
-    border: none;
-    cursor: pointer;
-}
-
-.btn:hover {
-    opacity: 0.9;
-    transform: scale(1.02);
-}
-
+/* --- 9. Formulario --- */
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-    background: var(--card-bg);
-    padding: 2.5rem;
-    border-radius: 20px;
-    border: 1px solid var(--border);
+    gap: 15px;
+    width: 100%;
 }
 
 input, textarea {
-    background: #030712;
+    background: #222;
     border: 1px solid var(--border);
-    padding: 1rem;
-    color: white;
+    padding: 15px;
     border-radius: 8px;
-    font-family: inherit;
+    color: white;
+    width: 100%;
 }
 
-input:focus, textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-}
-
-/* 8. Footer */
+/* --- 10. Footer --- */
 footer {
-    padding: 4rem 2rem;
-    border-top: 1px solid var(--border);
+    padding: 50px;
     text-align: center;
-    color: var(--text-secondary);
-    font-size: 0.85rem;
+    border-top: 1px solid var(--border);
+}
+
+.social-links {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* --- Responsividad --- */
+@media (max-width: 768px) {
+    nav ul { display: none; } /* Podés armar un menú hamburguesa luego */
+    section { padding: 80px 5%; }
 }
