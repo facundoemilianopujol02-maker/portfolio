@@ -73,10 +73,11 @@
             <h2 class="section-title">Hablemos</h2>
             <div class="contact-card">
                 <p>¿Tenés un proyecto en mente o buscás un desarrollador para tu equipo?</p>
-                <form action="https://formspree.io/f/mgopeknz" method="POST" class="contact-form">
+                <form id="my-form" action="https://formspree.io/f/mgopeknz" method="POST" class="contact-form">
                     <input type="email" name="email" placeholder="Tu correo electrónico" required>
                     <textarea name="message" rows="4" placeholder="¿En qué puedo ayudarte?" required></textarea>
-                    <button type="submit" class="btn">Enviar Mensaje</button>
+                    <button id="status-button" type="submit" class="btn">Enviar Mensaje</button>
+                    <p id="status-text" style="margin-top: 15px; font-size: 0.9rem; font-weight: 600;"></p>
                 </form>
             </div>
         </section>
@@ -94,10 +95,55 @@
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+      // Inicializar Animaciones
       AOS.init({
         duration: 1000,
         once: true
       });
+
+      // Lógica del Formulario (AJAX)
+      var form = document.getElementById("my-form");
+      
+      async function handleSubmit(event) {
+        event.preventDefault();
+        var status = document.getElementById("status-text");
+        var button = document.getElementById("status-button");
+        var data = new FormData(event.target);
+        
+        button.disabled = true;
+        status.innerHTML = "Enviando...";
+        status.style.color = "var(--accent)";
+
+        fetch(event.target.action, {
+          method: form.method,
+          body: data,
+          headers: {
+              'Accept': 'application/json'
+          }
+        }).then(response => {
+          if (response.ok) {
+            status.innerHTML = "¡Gracias! Tu mensaje fue enviado con éxito.";
+            status.style.color = "#22c55e"; // Verde éxito
+            form.reset();
+            button.disabled = false;
+          } else {
+            response.json().then(data => {
+              if (Object.hasOwn(data, 'errors')) {
+                status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
+              } else {
+                status.innerHTML = "Huy! Hubo un problema al enviar.";
+              }
+              status.style.color = "#ef4444"; // Rojo error
+              button.disabled = false;
+            })
+          }
+        }).catch(error => {
+          status.innerHTML = "Huy! Hubo un problema de conexión.";
+          status.style.color = "#ef4444";
+          button.disabled = false;
+        });
+      }
+      form.addEventListener("submit", handleSubmit)
     </script>
 </body>
 </html>
