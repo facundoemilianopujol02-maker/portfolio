@@ -3,141 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Facundo Pujol | Sistemas & Web Dev</title>
+    <title>Facundo Pujol | Web Developer Portfolio</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="favicon.png?v=1.1">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+
+    <style>
+        :root {
+            --bg: #050505;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --accent: #1dbf73;
+            --text: #ffffff;
+            --text-dim: #888888;
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        header {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #111 0%, #050505 100%);
+            padding: 20px;
+        }
+
+        header h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 10px; }
+        header p { color: var(--accent); font-size: 1.2rem; font-weight: 600; letter-spacing: 2px; }
+
+        /* Contenedor Principal */
+        .container {
+            max-width: 1100px;
+            margin: -50px auto 100px;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            margin-bottom: 40px;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title::after {
+            content: "";
+            height: 1px;
+            flex: 1;
+            background: var(--border);
+        }
+
+        /* Grid de Proyectos Dinámicos */
+        #portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        /* Card de Proyecto */
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .project-status {
+            display: inline-block;
+            background: rgba(29, 191, 115, 0.1);
+            color: var(--accent);
+            padding: 5px 12px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .project-techs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+
+        .tech-badge {
+            font-size: 0.7rem;
+            background: rgba(255,255,255,0.05);
+            color: var(--text-dim);
+            padding: 4px 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 50px;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+        }
+
+        /* Shimmer Effect (Cargando) */
+        .loading {
+            color: var(--text-dim);
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 50px;
+        }
+    </style>
 </head>
 <body>
 
     <header>
-        <nav>
-            <div class="logo">FP</div>
-            <ul>
-                <li><a href="#hero">Inicio</a></li>
-                <li><a href="#projects">Proyectos</a></li>
-                <li><a href="#services">Servicios</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contacto</a></li>
-            </ul>
-        </nav>
+        <h1>Facundo Pujol</h1>
+        <p>FULL STACK DEVELOPER</p>
     </header>
 
-    <main>
-        <section id="hero">
-            <div class="hero-content">
-                <h1 class="typing">Facundo Pujol</h1>
-                <p class="subtitle">Estudiante de Lic. en Sistemas (UNNE) & Full-Stack Developer</p>
-                <div class="badges">
-                    <span>React</span>
-                    <span>Firebase</span>
-                    <span>JavaScript</span>
-                    <span>Node.js</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects">
-            <h2 class="section-title">Proyectos Destacados</h2>
-            <div class="project-card">
-                <div class="project-content">
-                    <h3>Clean Solutions</h3>
-                    <p>Plataforma de E-commerce y catálogo dinámico con React y Firebase. Gestión de stock y carrito en tiempo real.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/facundoemilianopujol02-maker/CleanSolutions" target="_blank" class="btn">Ver Código</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="services">
-            <h2 class="section-title">Servicios Profesionales</h2>
-            <div class="services-container">
-                <div class="service-card">
-                    <div class="service-icon">🛍️</div>
-                    <h3>E-commerce Full-Stack</h3>
-                    <p>Tiendas online profesionales, rápidas y autogestionables.</p>
-                    <a href="https://www.fiverr.com/s/KeQjvAz" target="_blank" class="btn-fiverr">Ver en Fiverr</a>
-                </div>
-                <div class="service-card premium">
-                    <div class="service-icon">🛠️</div>
-                    <h3>Engineering & Debugging</h3>
-                    <p>Resolución de errores críticos y auditoría de sistemas.</p>
-                    <a href="https://www.fiverr.com/s/8zqDV4q" target="_blank" class="btn-fiverr">Ver en Fiverr</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills">
-            <h2 class="section-title">Technical Stack</h2>
-            <div class="skills-grid">
-                <div class="skill-item">
-                    <h4>Frontend</h4>
-                    <p>React.js, JS (ES6+), HTML5/CSS3</p>
-                </div>
-                <div class="skill-item">
-                    <h4>Backend</h4>
-                    <p>Firebase, Node.js, Git</p>
-                </div>
-                <div class="skill-item">
-                    <h4>Sistemas (UNNE)</h4>
-                    <p>C++, Python, Lógica & Álgebra</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2 class="section-title">Hablemos</h2>
-            <div class="contact-card">
-                <form id="my-form" action="https://formspree.io/f/mgopeknz" method="POST" class="contact-form">
-                    <input type="email" name="email" placeholder="Tu email" required>
-                    <textarea name="message" rows="5" placeholder="¿En qué puedo ayudarte?" required></textarea>
-                    <button id="status-button" type="submit" class="btn">Enviar Mensaje</button>
-                    <p id="status-text"></p>
-                </form>
-            </div>
-        </section>
-    </main>
+    <div class="container">
+        <h2 class="section-title">Proyectos Recientes</h2>
+        
+        <div id="portfolio-grid">
+            <div class="loading">Sincronizando con la base de datos...</div>
+        </div>
+    </div>
 
     <footer>
-        <p>© 2026 Facundo Pujol | Corrientes, Argentina</p>
-        <div class="social-links">
-            <a href="https://github.com/facundoemilianopujol02-maker" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/facundo-pujol-70216b214/" target="_blank">LinkedIn</a>
-        </div>
+        <p>&copy; 2026 Facundo Pujol - Desarrollado con React & Firebase</p>
     </footer>
 
     <script>
-        var form = document.getElementById("my-form");
-        async function handleSubmit(event) {
-            event.preventDefault();
-            var status = document.getElementById("status-text");
-            var button = document.getElementById("status-button");
-            var data = new FormData(event.target);
-            button.disabled = true;
-            status.innerHTML = "Enviando...";
-            fetch(event.target.action, {
-                method: form.method,
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                if (response.ok) {
-                    status.innerHTML = "¡Mensaje enviado con éxito!";
-                    status.style.color = "#1dbf73";
-                    form.reset();
-                    button.disabled = false;
-                } else {
-                    status.innerHTML = "Error al enviar.";
-                    status.style.color = "#ef4444";
-                    button.disabled = false;
-                }
-            }).catch(error => {
-                status.innerHTML = "Error de conexión.";
-                button.disabled = false;
+        // CONFIGURACIÓN DE FIREBASE (Es la misma que tu Dashboard)
+        const firebaseConfig = {
+            apiKey: "AIzaSyBA5cw9EOqZuHTPRbROdQN5f1RSvrbu6HI",
+            authDomain: "dashboard-caf9a.firebaseapp.com",
+            projectId: "dashboard-caf9a",
+            storageBucket: "dashboard-caf9a.firebasestorage.app",
+            messagingSenderId: "934880199162",
+            appId: "1:934880199162:web:10a8d9f9b82d32ba7ae443"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // FUNCIÓN PARA RENDERIZAR PROYECTOS
+        db.collection("proyecto").onSnapshot((snapshot) => {
+            const grid = document.getElementById('portfolio-grid');
+            grid.innerHTML = ""; // Limpiar el cargando
+
+            if (snapshot.empty) {
+                grid.innerHTML = "<p class='loading'>No hay proyectos cargados por el momento.</p>";
+                return;
+            }
+
+            snapshot.forEach((doc) => {
+                const p = doc.data();
+                
+                // Procesamos las tecnologías (por si vienen como array o no existen)
+                const techsHTML = p.tecnologias 
+                    ? p.tecnologias.map(t => `<span class="tech-badge">${t}</span>`).join('') 
+                    : '<span class="tech-badge">Web Tech</span>';
+
+                const card = `
+                    <div class="project-card">
+                        <div>
+                            <span class="project-status">${p.estado || p.Estado || 'Finalizado'}</span>
+                            <h3>${p.nombre || p.Nombre}</h3>
+                        </div>
+                        <div class="project-techs">
+                            ${techsHTML}
+                        </div>
+                    </div>
+                `;
+                
+                grid.innerHTML += card;
             });
-        }
-        form.addEventListener("submit", handleSubmit);
+        });
     </script>
 </body>
 </html>
