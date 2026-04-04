@@ -6,7 +6,6 @@
     <title>Facundo Pujol | Web Developer Portfolio</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-    
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 
@@ -21,149 +20,90 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6; }
 
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            line-height: 1.6;
-        }
-
-        /* Hero Section */
+        /* HERO */
         header {
-            height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle at center, #111 0%, #050505 100%);
-            padding: 20px;
+            height: 60vh; display: flex; flex-direction: column; justify-content: center;
+            align-items: center; text-align: center; background: radial-gradient(circle at center, #111 0%, #050505 100%); padding: 20px;
         }
-
         header h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 10px; }
         header p { color: var(--accent); font-size: 1.2rem; font-weight: 600; letter-spacing: 2px; }
 
-        /* Contenedor Principal */
-        .container {
-            max-width: 1100px;
-            margin: -50px auto 100px;
-            padding: 0 20px;
-        }
+        .container { max-width: 1100px; margin: -50px auto 100px; padding: 0 20px; }
 
-        .section-title {
-            margin-bottom: 40px;
-            font-size: 1.8rem;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+        .section-title { margin: 60px 0 40px; font-size: 1.8rem; display: flex; align-items: center; gap: 15px; }
+        .section-title::after { content: ""; height: 1px; flex: 1; background: var(--border); }
 
-        .section-title::after {
-            content: "";
-            height: 1px;
-            flex: 1;
-            background: var(--border);
-        }
-
-        /* Grid de Proyectos Dinámicos */
-        #portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 25px;
-        }
-
-        /* Card de Proyecto */
+        /* GRID PROYECTOS */
+        #portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
         .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 30px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 24px;
+            padding: 30px; transition: 0.3s; backdrop-filter: blur(10px);
+            display: flex; flex-direction: column; justify-content: space-between;
         }
+        .project-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .project-status { background: rgba(29, 191, 115, 0.1); color: var(--accent); padding: 5px 12px; border-radius: 10px; font-size: 0.75rem; font-weight: 800; margin-bottom: 20px; display: inline-block; }
+        .tech-badge { font-size: 0.7rem; background: rgba(255,255,255,0.05); color: var(--text-dim); padding: 4px 10px; border-radius: 8px; border: 1px solid var(--border); margin-right: 5px; }
 
-        .project-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        /* CONTACT SECTION */
+        .contact-box {
+            background: var(--card-bg); border: 1px solid var(--border); border-radius: 30px;
+            padding: 50px; text-align: center; margin-top: 50px;
         }
+        .contact-box h3 { font-size: 2rem; margin-bottom: 20px; }
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px; }
+        
+        .contact-item {
+            padding: 20px; border-radius: 20px; border: 1px solid var(--border);
+            text-decoration: none; color: #fff; transition: 0.3s;
+        }
+        .contact-item:hover { background: rgba(255,255,255,0.05); border-color: var(--accent); }
+        .contact-item span { display: block; color: var(--accent); font-weight: 800; margin-bottom: 5px; }
 
-        .project-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-
-        .project-status {
-            display: inline-block;
-            background: rgba(29, 191, 115, 0.1);
-            color: var(--accent);
-            padding: 5px 12px;
-            border-radius: 10px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .project-techs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 20px;
-        }
-
-        .tech-badge {
-            font-size: 0.7rem;
-            background: rgba(255,255,255,0.05);
-            color: var(--text-dim);
-            padding: 4px 10px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 50px;
-            color: var(--text-dim);
-            border-top: 1px solid var(--border);
-        }
-
-        /* Shimmer Effect (Cargando) */
-        .loading {
-            color: var(--text-dim);
-            text-align: center;
-            grid-column: 1 / -1;
-            padding: 50px;
-        }
+        footer { text-align: center; padding: 50px; color: var(--text-dim); border-top: 1px solid var(--border); margin-top: 100px; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>Facundo Pujol</h1>
-        <p>FULL STACK DEVELOPER</p>
+        <p>WEB DEVELOPER | REACT & FIREBASE</p>
     </header>
 
     <div class="container">
-        <h2 class="section-title">Proyectos Recientes</h2>
-        
+        <h2 class="section-title">Proyectos</h2>
         <div id="portfolio-grid">
-            <div class="loading">Sincronizando con la base de datos...</div>
+            <div style="text-align: center; grid-column: 1/-1; padding: 50px; color: var(--text-dim);">Cargando tus proyectos...</div>
+        </div>
+
+        <h2 class="section-title">Contacto</h2>
+        <div class="contact-box">
+            <h3>¿Tenés un proyecto en mente?</h3>
+            <p style="color: var(--text-dim); margin-bottom: 30px;">Estoy disponible para trabajos freelance y colaboraciones en proyectos de alto impacto.</p>
+            
+            <div class="contact-grid">
+                <a href="mailto:tuemail@ejemplo.com" class="contact-item">
+                    <span>Email</span>
+                    Enviar mensaje directo
+                </a>
+                <a href="https://linkedin.com/in/tuperfil" target="_blank" class="contact-item">
+                    <span>LinkedIn</span>
+                    Conectemos profesionalmente
+                </a>
+                <a href="https://wa.me/tunumerotelefono" target="_blank" class="contact-item">
+                    <span>WhatsApp</span>
+                    Hablemos por chat
+                </a>
+            </div>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Facundo Pujol - Desarrollado con React & Firebase</p>
+        <p>&copy; 2026 Facundo Pujol - Corrientes, Argentina</p>
     </footer>
 
     <script>
-        // CONFIGURACIÓN DE FIREBASE (Es la misma que tu Dashboard)
         const firebaseConfig = {
             apiKey: "AIzaSyBA5cw9EOqZuHTPRbROdQN5f1RSvrbu6HI",
             authDomain: "dashboard-caf9a.firebaseapp.com",
@@ -173,41 +113,28 @@
             appId: "1:934880199162:web:10a8d9f9b82d32ba7ae443"
         };
 
-        // Inicializar Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // FUNCIÓN PARA RENDERIZAR PROYECTOS
         db.collection("proyecto").onSnapshot((snapshot) => {
             const grid = document.getElementById('portfolio-grid');
-            grid.innerHTML = ""; // Limpiar el cargando
-
-            if (snapshot.empty) {
-                grid.innerHTML = "<p class='loading'>No hay proyectos cargados por el momento.</p>";
-                return;
-            }
+            grid.innerHTML = "";
 
             snapshot.forEach((doc) => {
                 const p = doc.data();
-                
-                // Procesamos las tecnologías (por si vienen como array o no existen)
                 const techsHTML = p.tecnologias 
                     ? p.tecnologias.map(t => `<span class="tech-badge">${t}</span>`).join('') 
-                    : '<span class="tech-badge">Web Tech</span>';
+                    : '<span class="tech-badge">React</span>';
 
-                const card = `
+                grid.innerHTML += `
                     <div class="project-card">
                         <div>
                             <span class="project-status">${p.estado || p.Estado || 'Finalizado'}</span>
                             <h3>${p.nombre || p.Nombre}</h3>
                         </div>
-                        <div class="project-techs">
-                            ${techsHTML}
-                        </div>
+                        <div class="project-techs">${techsHTML}</div>
                     </div>
                 `;
-                
-                grid.innerHTML += card;
             });
         });
     </script>
